@@ -17,22 +17,22 @@ Déroulement du programme :
   * Ensuite, on choisit le challenger et la map si cela ne se fait pas au hasard.
   
   * Le jeu se lance, peut-être envisager un moyen de retourner à l'écran d'accueil.
-  A la fin de la partie, si le jeu s'est fait avec le calcul des points scores, il faudra afficher les points score ainsi que le
-  gagnant puis de quoi retourner au menu pour éventuellement rejouer.
+  A la fin de la partie, si le jeu s'est fait avec le calcul des points scores, il faudra afficher les points score ainsi que 
+  le gagnant puis de quoi retourner au menu pour éventuellement rejouer.
   
 Fonctionnalités du programme :
-  * Les personnages sont guidés par les touches du clavier : les touches QZSD  pour l'un des deux joueurs et pour l'autre les flèches
+  * Les personnages sont guidés par les touches du clavier : les touches QZSD  pour l'un des deux joueurs et pour l'autre 
   les flèches directionnelles.
   * On peut revenir au menu principal à tout moment.
-  * Envisager un temps imparti pour éviter les parties trop longues. Ou pourquoi accorder un bonus vitesse progressif au cauchemar 
-  pour éviter les parties qui ne finissent pas.
+  * Envisager un temps imparti pour éviter les parties trop longues. Ou pourquoi accorder un bonus vitesse progressif au 
+  cauchemar pour éviter les parties qui ne finissent pas.
   
   
 Idées supplémentaires si le temps de développer :
   * Les différents personnages peuvent être à débloquer (faire un nombre de points scores pour le gentil ou pour le cauchemar,
   récupérer un certain nombre de bonus dans un temps imparti, attraper le challenger dans un temps imparti,etc.. Sortes 
-  d'achievements ou de récompenses à des missions). Mais implique une mémoire, une sauvegarde pour ne pas avoir à tout redébloquer
-  à chaque fois.
+  d'achievements ou de récompenses à des missions). Mais implique une mémoire, une sauvegarde pour ne pas avoir à tout 
+  redébloquer à chaque fois.
   * Pareil pour la map (même condition)
   * Un éditeur de map maybe (toujours idée de sauvegarde), accessible par le menu d'accueil
   * Une IA qui joue en plus et qui a pour but, elle d'attraper les deux personnages, plus rapide mais on peut donc songer à
