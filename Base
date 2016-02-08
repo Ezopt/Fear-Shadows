@@ -1,0 +1,18 @@
+import pygame
+from pygame.locals import *
+#Initialisation
+pygame.init()
+
+#Création de la fenêtre
+fenetre = pygame.display.set_mode((640, 480), RESIZABLE)
+
+open = 1
+fond = pygame.image.load("./Img_FS/back1.jpg").convert()
+
+
+
+
+
+while open:
+    open = int(input("0/1 ? "))
+#
