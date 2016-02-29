@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Éditeur de Spyder
-
-Ceci est un script temporaire.
-"""
-#Importation des bibliothèques Pygame 
 import pygame
 from pygame.locals import *
 #Initialisation
@@ -23,12 +16,40 @@ pygame.display.flip()
 open = True
 while open:
     for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-        if event.type == KEYDOWN and event.key == K_SPACE:
+            perso_x = 0
+            perso_y = 0
             depart = pygame.image.load("./Img_FS/depart.png").convert()
             fenetre.blit(depart, (0,0))
             perso = pygame.image.load("./Img_FS/chlgr.png").convert_alpha()
-            fenetre.blit(perso, depart.get_rect())
+            fenetre.blit(perso, (perso_x, perso_y))
             #Rafraîchissement de l'image
             pygame.display.flip()
-        if event.type == QUIT:     #Si un de ces événements est de type QUIT
-            open = 0      #On arrête la boucle
+            while event.type == KEYDOWN:
+                
+                    if event.key == K_LEFT and perso_x >= 0 and perso_x <= 640:
+                        perso_x = perso_x - 40
+                    else:
+                        perso_x = perso_x
+                    if event.key == K_RIGHT and perso_x >= 0 and perso_x <= 640:
+                        perso_x = perso_x + 40
+                    else:
+                        perso_x = perso_x
+                    if event.key == K_UP and perso_y >= 0 and perso_y <= 480:
+                        perso_y = perso_y - 40
+                    else:
+                        perso_y = perso_y
+                    if event.key == K_DOWN and perso_y >= 0 and perso_y <= 480:
+                        perso_y = perso_y + 40
+                    else:
+                        perso_y = perso_y
+            
+                    fenetre.blit(perso, (perso_x, perso_y))
+                    #Rafraîchissement de l'image)            
+                    pygame.display.flip()
+                    #Limitation de vitesse de la boucle
+                    #30 frames par secondes suffisent
+                    pygame.time.Clock().tick(30)
+
+            
+            if event.type == QUIT:     #Si un de ces événements est de type QUIT
+                open = 0      #On arrête la boucle
