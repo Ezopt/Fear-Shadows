@@ -11,11 +11,23 @@ from pygame.locals import *
 pygame.init()
 
 #Création de la fenêtre
-fenetre = pygame.display.set_mode((1680, 1000))
+fenetre = pygame.display.set_mode((840, 520))
 
 #Image fond
 fond = pygame.image.load("./Img_FS/back1.jpg").convert()
 fenetre.blit(fond, (0,0))
+
+depart = pygame.image.load("./Img_FS/depart.png").convert()
+fenetre.blit(depart, (0,0))
+            
+perso = pygame.image.load("./Img_FS/chlgr.png").convert_alpha()
+position_perso = perso.get_rect()
+fenetre.blit(perso, position_perso)
+            
+monstre = pygame.image.load("./Img_FS/zigler.png").convert_alpha()
+position_monstre = monstre.get_rect()
+fenetre.blit(monstre, position_monstre)
+
 #Rafraîchissement de l'image
 pygame.display.flip()
 
@@ -23,33 +35,38 @@ pygame.display.flip()
 open = True
 while open:
     for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
-            depart = pygame.image.load("./Img_FS/depart.png").convert()
-            fenetre.blit(depart, (0,0))
-            perso = pygame.image.load("./Img_FS/chlgr.png").convert_alpha()
-            fenetre.blit(perso, (40,920))
-            monstre = pygame.image.load("./Img_FS/zigler.png").convert_alpha()
-            fenetre.blit(monstre, (1640,80))
             
-            position_perso = perso.get_rect()
-            
-            position_monstre = monstre.get_rect()
             
             #Rafraîchissement de l'image
             pygame.display.flip()
             if event.type == KEYDOWN:
                 
-                    if event.key == K_DOWN:	#Si "flèche bas"
+                    if event.key == K_s:	#Si "flèche bas"
                         #On descend le perso
                         position_perso = position_perso.move(0,40)
-                    if event.key == K_UP:	#Si "flèche haut"                       
+                    if event.key == K_z:	#Si "flèche haut"                       
                         #On monte le perso                        
                         position_perso = position_perso.move(0,-40)
-                    if event.key == K_LEFT:	#Si "flèche gauche"                       
+                    if event.key == K_q:	#Si "flèche gauche"                       
                         #On va vers la gauche                                                
                         position_perso = position_perso.move(-40,0)
-                    if event.key == K_RIGHT: #Si "flèche droite"                       
+                    if event.key == K_d: #Si "flèche droite"                       
                         #On va vers la droite                                                                       
-                        position_perso = position_perso.move(40,0)    
+                        position_perso = position_perso.move(40,0)
+                        
+                    if event.key == K_DOWN:	#Si "flèche bas"
+                        #On descend le monstre
+                        position_monstre = position_monstre.move(0,40)
+                    if event.key == K_UP:	#Si "flèche haut"
+                        #On monte le monstre
+                        position_monstre = position_monstre.move(0,-40)
+                    if event.key == K_LEFT:	#Si "flèche gauche"                       
+                        #On va vers la gauche                                                
+                        position_monstre = position_monstre.move(-40,0)
+                    if event.key == K_RIGHT: #Si "flèche droite"                       
+                        #On va vers la droite                                  
+                        position_monstre = position_monstre.move(40,0)
+                    
            
             if event.type == QUIT:     #Si un de ces événements est de type QUIT
                     open = 0      #On arrête la boucle
