@@ -31,23 +31,21 @@ fenetre.blit(monstre, position_monstre)
 #Rafraîchissement de l'image
 pygame.display.flip()
 
+pygame.key.set_repeat(400, 100)
 
 open = True
 while open:
     for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
             
-            
-            #Rafraîchissement de l'image
-            pygame.display.flip()
             if event.type == KEYDOWN:
                 
                     if event.key == K_s:	#Si "flèche bas"
                         #On descend le perso
                         position_perso = position_perso.move(0,40)
-                    if event.key == K_z:	#Si "flèche haut"                       
+                    if event.key == K_w:	#Si "flèche haut"                       
                         #On monte le perso                        
                         position_perso = position_perso.move(0,-40)
-                    if event.key == K_q:	#Si "flèche gauche"                       
+                    if event.key == K_a:	#Si "flèche gauche"                       
                         #On va vers la gauche                                                
                         position_perso = position_perso.move(-40,0)
                     if event.key == K_d: #Si "flèche droite"                       
@@ -70,7 +68,7 @@ while open:
            
             if event.type == QUIT:     #Si un de ces événements est de type QUIT
                     open = 0      #On arrête la boucle
- 
+            
     #Re-collage
     fenetre.blit(fond,(0,0))	
     fenetre.blit(perso, position_perso)
