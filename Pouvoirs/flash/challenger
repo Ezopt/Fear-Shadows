@@ -1,19 +1,19 @@
-if event.type == KEYDOWN and event.key == K_a and event.key == K_LEFT :
+if event.type == KEYDOWN and event.key == K_a and event.key == K_q :
   position_perso = perso.get_rect()
   fenetre.blit(perso, position_perso)
   perso.move(-80 , 0)
   
-if event.type == KEYDOWN and event.key == K_a and event.key == K_RIGHT :
+if event.type == KEYDOWN and event.key == K_a and event.key == K_d :
   position_perso = perso.get_rect()
   fenetre.blit(perso, position_perso)
   perso.move(80 , 0)
 
-if event.type == KEYDOWN and event.key == K_a and event.key == K_UP :
+if event.type == KEYDOWN and event.key == K_a and event.key == K_z :
   position_perso = perso.get_rect()
   fenetre.blit(perso, position_perso)
   perso.move(0, 80)
   
-if event.type == KEYDOWN and event.key == K_a and event.key == K_DOWN :
+if event.type == KEYDOWN and event.key == K_a and event.key == K_s :
   position_perso = perso.get_rect()
   fenetre.blit(perso, position_perso)
   perso.move(0 , -80)
