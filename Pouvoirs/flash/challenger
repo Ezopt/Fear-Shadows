@@ -19,4 +19,4 @@ if event.type == KEYDOWN and event.key == K_a and event.key == K_s :
   perso.move(0 , -80)
 
 elif position_perso = liste[x] and liste[x] == 0 :
-  position_perso == perso.get_rect(80,120)
+  position_perso == perso.get_rect(sa case de départ)
