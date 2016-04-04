@@ -2,7 +2,7 @@ import pygame
 
 from pygame.locals import * 
 
-from constantes import *
+from cst import *
 
 
 class Niveau:
