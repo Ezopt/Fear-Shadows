@@ -3,6 +3,8 @@ import pygame
 from pygame.locals import * 
 
 from cst import *
+from menu import *
+from base import *
 
 
 class Niveau:
