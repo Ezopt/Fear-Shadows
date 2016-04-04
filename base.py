@@ -18,25 +18,27 @@ pygame.init()
 #Création de la fenêtre
 fenetre = pygame.display.set_mode((840, 520))
 
-#Image fond
-fond = pygame.image.load("./Img_FS/back1.jpg").convert()
-fenetre.blit(fond, (0,0))
-            
-perso = pygame.image.load("./Img_FS/chlgr.png").convert_alpha()
+perso = pygame.image.load("./Img_FS/"choix_perso".png").convert_alpha()
+
+monstre = pygame.image.load("./Img_FS/"choix_monstre".png").convert_alpha()
+
 x_perso = 0
 y_perso = 0
-fenetre.blit(perso, (x_perso, y_perso))
-            
-monstre = pygame.image.load("./Img_FS/zigler.png").convert_alpha()
+
 x_monstre = 0
 y_monstre = 0
+
+actif = {K_s: False, K_w: False, K_a: False, K_d: False, K_UP: False, K_DOWN: False, K_RIGHT: False, K_LEFT: False}
+
+#Positionnement des images sur l'écran
+fenetre.blit(fond, (0,0))
+fenetre.blit(perso, (x_perso, y_perso))
 fenetre.blit(monstre,(x_monstre, y_monstre))
 
 #Rafraîchissement de l'image
 pygame.display.flip()
 
 pygame.key.set_repeat(400, 100)
-actif = {K_s: False, K_w: False, K_a: False, K_d: False, K_UP: False, K_DOWN: False, K_RIGHT: False, K_LEFT: False}
 
 open = True
 while open:
