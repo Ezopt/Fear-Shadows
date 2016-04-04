@@ -11,6 +11,7 @@ from menu import *
 from classes import *
 from cst import *
 
+#PENSER A MODIFIER LES VALEURS POUR LA FENÊTRE ET AUTRES, EN 32 PAR 32
 
 #Initialisation
 pygame.init()
