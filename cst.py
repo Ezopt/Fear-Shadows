@@ -17,8 +17,8 @@ titre_fenetre = "Fear Shadows"
 
 #Listes des images du jeu
 
-image_accueil = "images/accueil.png"
+image_accueil = "./Img_FS/accueil.png"
 
 image_fond = "./Img_FS/back1.jpg"
 
-image_mur = "images/mur.png"
+image_mur = "./Img_FS/mur.png"
