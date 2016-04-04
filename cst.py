@@ -19,6 +19,10 @@ titre_fenetre = "Fear Shadows"
 
 image_accueil = "./Img_FS/accueil.png"
 
-image_fond = "./Img_FS/back1.jpg"
+image_fond = "./Img_FS/back.jpg"
 
 image_mur = "./Img_FS/mur.png"
+
+persos = "./Img_FS/persos.png"
+
+monstres = "./Img_FS/monstres.png"
