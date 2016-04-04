@@ -7,6 +7,10 @@ Ceci est un script temporaire.
 #Importation des bibliothèques Pygame 
 import pygame
 from pygame.locals import *
+from classes import *
+from cst import *
+
+
 #Initialisation
 pygame.init()
 
