@@ -1,1 +1,17 @@
+CASES MYSTERES
 
+Marcher sur une case mystère remplace le bonus stocké par un nouveau bonus généré aléatoirement
+
+Pouvoir challenger :
+  peut être stocké
+    • Franchissement de mur (saute 1 case)
+    • Cauchemar inoffensif 
+    • Accélération
+    • Vie supplémentaire
+    
+Pouvoir cauchemar :
+  ○ pouvoir permanent : Piège (limité dans le temps et a un temps de rechargement donné)
+  • Accélération
+  • Map cloisonnée
+  • Suppresion du bonus stocké par le challenger, sans effet si pas de bonus stocké
+    
