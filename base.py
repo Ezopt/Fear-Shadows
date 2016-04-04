@@ -7,6 +7,7 @@ Ceci est un script temporaire.
 #Importation des bibliothèques Pygame 
 import pygame
 from pygame.locals import *
+from menu import *
 from classes import *
 from cst import *
 
