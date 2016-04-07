@@ -2,9 +2,9 @@ fond = pygame.image.load(image_fond).convert()
 
 #Paramètres de la fenêtre
 
-nombre_sprite_cote = 15
+nombre_sprite_cote = 25
 
-taille_sprite = 30
+taille_sprite = 42
 
 cote_fenetre = nombre_sprite_cote * taille_sprite
 
@@ -19,7 +19,7 @@ titre_fenetre = "Fear Shadows"
 
 image_accueil = "./Img_FS/accueil.png"
 
-image_fond = "./Img_FS/back.jpg"
+image_fond = "./Img_FS/back1.jpg"
 
 image_mur = "./Img_FS/mur.png"
 
