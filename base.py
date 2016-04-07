@@ -17,24 +17,28 @@ from cst import *
 pygame.init()
 
 #Création de la fenêtre
-fenetre = pygame.display.set_mode((840, 520))
+fenetre = pygame.display.set_mode((1344, 800))
 
-perso = pygame.image.load("./Img_FS/"choix_perso".png").convert_alpha()
+perso = pygame.image.load("./Img_FS/p"choix_perso".png").convert_alpha()
 
-monstre = pygame.image.load("./Img_FS/"choix_monstre".png").convert_alpha()
+monstre = pygame.image.load("./Img_FS/m"choix_monstre".png").convert_alpha()
 
-x_perso = 0
-y_perso = 0
+x1_perso = 32
+y1_perso = 704
+x2_perso = x1_perso + 32
+y2_perso = y1_perso + 32
 
-x_monstre = 0
-y_monstre = 0
+x1_monstre = 1280
+y1_monstre = 64
+x2_monstre = x1_monstre + 32
+y2_monstre = y1_monstre + 32
 
 actif = {K_s: False, K_w: False, K_a: False, K_d: False, K_UP: False, K_DOWN: False, K_RIGHT: False, K_LEFT: False}
 
 #Positionnement des images sur l'écran
 fenetre.blit(fond, (0,0))
-fenetre.blit(perso, (x_perso, y_perso))
-fenetre.blit(monstre,(x_monstre, y_monstre))
+fenetre.blit(perso, (x1_perso, y1_perso))
+fenetre.blit(monstre,(x1_monstre, y1_monstre))
 
 #Rafraîchissement de l'image
 pygame.display.flip()
@@ -52,29 +56,29 @@ while open:
                 
             if actif[K_s]:	#Si "flèche bas"
                 #On descend le perso
-                y_perso = y_perso + 40
+                y1_perso = y1_perso + 32
             if actif[K_w]:	#Si "flèche haut"                       
                 #On monte le perso
-                y_perso = y_perso - 40
+                y1_perso = y1_perso - 32
             if actif[K_a]:	#Si "flèche gauche"                       
                 #On va vers la gauche
-                x_perso = x_perso - 40
+                x1_perso = x1_perso - 32
             if actif[K_d]: #Si "flèche droite"                       
                 #On va vers la droite
-                x_perso = x_perso + 40
+                x1_perso = x1_perso + 32
                 
             if actif[K_DOWN]:	#Si "flèche bas"
                 #On descend le monstre
-                y_monstre = y_monstre + 40
+                y1_monstre = y1_monstre + 32
             if actif[K_UP]:	#Si "flèche haut"
                 #On monte le monstre
-                y_monstre = y_monstre - 40
+                y1_monstre = y1_monstre - 32
             if actif[K_LEFT]:	#Si "flèche gauche"                       
                 #On va vers la gauche
-                x_monstre = x_monstre - 40
+                x1_monstre = x1_monstre - 32
             if actif[K_RIGHT]: #Si "flèche droite"                       
                 #On va vers la droite                                  
-                x_monstre = x_monstre + 40
+                x1_monstre = x1_monstre + 32
                     
            
             if event.type == QUIT:     #Si un de ces événements est de type QUIT
@@ -82,8 +86,8 @@ while open:
             
     #Re-collage
     fenetre.blit(fond,(0,0))	
-    fenetre.blit(perso, (x_perso, y_perso))
-    fenetre.blit(monstre, (x_monstre, y_monstre))
+    fenetre.blit(perso, (x1_perso, y1_perso))
+    fenetre.blit(monstre, (x1_monstre, y1_monstre))
     #Rafraîchissement de l'image)            
     pygame.display.flip()
     #Limitation de vitesse de la boucle
