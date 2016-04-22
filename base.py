@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """
 Created on Wed Apr 20 16:00:15 2016
 
@@ -6,6 +7,7 @@ Created on Wed Apr 20 16:00:15 2016
 
 #Importation des bibliothèques Pygame 
 import pygame
+import time
 from pygame.locals import *
 #from classes import *
 from cst import *
@@ -39,8 +41,16 @@ jeu = False
 reglages = False
 p = False
 m = False
+tstop = 0
+t0 = 0
+t = 0
+score = 0
+recordp = 0
+recordm = 1000
 choix_perso = 0
 choix_monstre = 0
+
+myfont = pygame.font.SysFont("monospace", 16)
 
 pygame.key.set_repeat(400, 100)
 
@@ -72,9 +82,13 @@ while open:
                     reglages = True
                     m = True
                     p = False
+                if event.key == K_ESCAPE :
+                    pygame.quit()
+                    quit()
                 if event.key == K_RETURN :
                     menu = False
                     jeu = True
+                    t0 = time.time()
 
 	
       while reglages == True :
@@ -147,18 +161,26 @@ while open:
         x2_monstre = x1_monstre + 32
         y2_monstre = y1_monstre + 32
         
+        t = time.time() - t0
+        
         perso = pygame.image.load(dossier + "p" +str(choix_perso) + extension1).convert_alpha()
 
         monstre = pygame.image.load(dossier + "m" + str(choix_monstre) + extension1).convert_alpha()
         monstreXL = pygame.image.load(dossier + "mXL" + str(choix_monstre) + extension1).convert_alpha()
-    
+        
+        temps_display = myfont.render(str(t), 1, (56,180,0))
+        
         #Positionnement des images sur l'écran
+        print(t)
         fenetre.blit(fond, (0,0))
         fenetre.blit(perso, (x1_perso, y1_perso))
         fenetre.blit(monstre,(x1_monstre, y1_monstre))
+        fenetre.blit(temps_display, (672, 50))
     
         #Rafraîchissement de l'image
         pygame.display.flip()
+        
+        
     
         for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
             
@@ -224,10 +246,12 @@ while open:
             if event.type == KEYDOWN:
                 if event.key == K_TAB:
                     stop = True
-                    if stop:
+                    t = time.time() - t0
+                    tstop = t
+                    while stop:
                         
                         fenetre.blit(pause,(378.5,200))
-                    
+                     
                         #Rafraîchissement de l'image
                         pygame.display.flip()
                         
@@ -250,7 +274,9 @@ while open:
                                 
                     
                         if event.key == K_SPACE:
-                        
+                                
+                                tstop = t
+                                fenetre.blit(temps_display, (672, 50))
                                 fenetre.blit(fond, (0,0))
                                 fenetre.blit(perso, (x1_perso, y1_perso))
                                 fenetre.blit(monstre,(x1_monstre, y1_monstre))
@@ -260,6 +286,7 @@ while open:
                     
             
             #Re-collage
+            
             fenetre.blit(fond,(0,0))	
             fenetre.blit(perso, (x1_perso, y1_perso))
             fenetre.blit(monstre, (x1_monstre, y1_monstre))
@@ -269,12 +296,31 @@ while open:
             #30 frames par secondes suffisent
             pygame.time.Clock().tick(30)
     
-        while x1_perso == x1_monstre and y1_perso == y1_monstre :
+        while x1_perso == x1_monstre and y1_perso == y1_monstre or -32 < x1_monstre-x1_perso < 32 and y1_perso == y1_monstre or -32 < y1_monstre-y1_perso < 32 and x1_perso == x1_monstre :
+            
+            score = t
+            if score > recordp:
+                recordp = score
+                
+            if score < recordm:
+                recordm = score
+            
+            
             fenetre.blit(game_over,(0,0))
             fenetre.blit(monstreXL,(504,200))
             fenetre.blit(tache,(612,380))
             fenetre.blit(perso,(640.5,400))
-        
+            
+            score_display = myfont.render(str(score), 1, (56,180,0))
+            fenetre.blit(score_display, (576, 150))
+            
+            recordm_display = myfont.render("Record de l'ombre : " + str(recordm), 1, (56,180,0))
+            fenetre.blit(recordm_display, (100, 180))
+            
+            recordp_display = myfont.render("Record du challenger : " + str(recordp), 1, (56,180,0))
+            fenetre.blit(recordp_display, (832, 180))
+            
+            pygame.display.flip()
             pygame.display.flip()
         
             for event in pygame.event.get() :
@@ -301,3 +347,4 @@ while open:
                                 y1_perso = 704
                                 x1_monstre = 1280
                                 y1_monstre = 64
+                                t0 = time.time()
