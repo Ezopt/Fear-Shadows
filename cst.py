@@ -22,6 +22,12 @@ image_persos = dossier + "persos" + extension1
 
 image_monstres = dossier + "monstres" + extension1
 
+image_fin = dossier + "fin" + extension1
+
+image_pause = dossier + "pause" + extension1
+
+image_tache = dossier + "tache" + extension1
+
 
 #Paramètres de la fenêtre
 
