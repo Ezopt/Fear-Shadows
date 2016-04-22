@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Created on Wed Apr 20 16:00:15 2016
 
@@ -11,7 +10,6 @@ from pygame.locals import *
 #from classes import *
 from cst import *
 
-#PENSER A MODIFIER LES VALEURS POUR LA FENÊTRE ET AUTRES, EN 32 PAR 32
 
 #Initialisation
 pygame.init()
@@ -20,34 +18,34 @@ pygame.init()
 fenetre = pygame.display.set_mode((1344, 800))
 
 fond = pygame.image.load(image_fond).convert()
+pause = pygame.image.load(image_pause).convert()
 accueil = pygame.image.load(image_accueil).convert()
 persos = pygame.image.load(image_persos).convert()
 monstres = pygame.image.load(image_monstres).convert()
+game_over = pygame.image.load(image_fin).convert()
+tache = pygame.image.load(image_tache).convert()
 
 x1_perso = 32
 y1_perso = 704
-x2_perso = x1_perso + 32
-y2_perso = y1_perso + 32
 
 x1_monstre = 1280
 y1_monstre = 64
-x2_monstre = x1_monstre + 32
-y2_monstre = y1_monstre + 32
 
 actif = {K_s: False, K_w: False, K_a: False, K_d: False, K_UP: False, K_DOWN: False, K_RIGHT: False, K_LEFT: False}
 
+menu = True
+stop = False
+jeu = False
+reglages = False
+p = False
+m = False
+choix_perso = 0
+choix_monstre = 0
 
 pygame.key.set_repeat(400, 100)
 
 open = True
 while open:
-
-    menu = True
-    reglages = False
-    p = False
-    m = False
-    choix_perso = 0
-    choix_monstre = 0
 
     #penser à importer les variables de surface, la création, etc.
     while menu == True:
@@ -69,11 +67,14 @@ while open:
                 if event.key == K_p :
                     reglages = True
                     p = True
+                    m = False
                 if event.key == K_SEMICOLON :
                     reglages = True
                     m = True
+                    p = False
                 if event.key == K_RETURN :
                     menu = False
+                    jeu = True
 
 	
       while reglages == True :
@@ -105,8 +106,7 @@ while open:
                                 reglages = False
                             if event.key == K_ESCAPE :
                                 reglages = False
-                            else :
-                                choix_perso = 1
+                            
           elif m == True :
                 fenetre.blit(monstres,(0,0))
                 pygame.display.flip()
@@ -137,23 +137,30 @@ while open:
                                 reglages = False
                             if event.key == K_ESCAPE :
                                 reglages = False
-                            else :
-                                choix_monstre = 1
+                           
 
-    perso = pygame.image.load(dossier + "p" +str(choix_perso) + extension1).convert_alpha()
+    while jeu == True :
+    
+        x2_perso = x1_perso + 32
+        y2_perso = y1_perso + 32
+        
+        x2_monstre = x1_monstre + 32
+        y2_monstre = y1_monstre + 32
+        
+        perso = pygame.image.load(dossier + "p" +str(choix_perso) + extension1).convert_alpha()
 
-    monstre = pygame.image.load(dossier + "m" + str(choix_monstre) + extension1).convert_alpha()
+        monstre = pygame.image.load(dossier + "m" + str(choix_monstre) + extension1).convert_alpha()
+        monstreXL = pygame.image.load(dossier + "mXL" + str(choix_monstre) + extension1).convert_alpha()
     
+        #Positionnement des images sur l'écran
+        fenetre.blit(fond, (0,0))
+        fenetre.blit(perso, (x1_perso, y1_perso))
+        fenetre.blit(monstre,(x1_monstre, y1_monstre))
     
-    #Positionnement des images sur l'écran
-    fenetre.blit(fond, (0,0))
-    fenetre.blit(perso, (x1_perso, y1_perso))
-    fenetre.blit(monstre,(x1_monstre, y1_monstre))
+        #Rafraîchissement de l'image
+        pygame.display.flip()
     
-    #Rafraîchissement de l'image
-    pygame.display.flip()
-    
-    for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
+        for event in pygame.event.get():   #On parcours la liste de tous les événements reçus
             
             if event.type == KEYDOWN:
                 actif[event.key] = True
@@ -187,15 +194,110 @@ while open:
                 x1_monstre = x1_monstre + 32
                     
            
+            if x2_monstre > 1344:
+                x1_monstre = 0
+            if x1_monstre < 0:
+                x2_monstre = 1344
+                x1_monstre = x2_monstre - 32
+            
+            if x2_perso > 1344:
+                x1_perso = 0
+            if x1_perso < 0:
+                x2_perso = 1344
+                x1_perso = x2_perso - 32
+            
+            if y2_perso > 800:
+                y1_perso = 0
+            if y1_perso < 0:
+                y2_perso = 800 
+                y1_perso = y2_perso - 32
+                
+            if y2_monstre > 800:
+                y1_monstre = 0  
+            if y1_monstre < 0:
+                y2_monstre = 800
+                y1_monstre = y2_monstre - 32
+           
             if event.type == QUIT:     #Si un de ces événements est de type QUIT
                     open = 0      #On arrête la boucle
             
-    #Re-collage
-    fenetre.blit(fond,(0,0))	
-    fenetre.blit(perso, (x1_perso, y1_perso))
-    fenetre.blit(monstre, (x1_monstre, y1_monstre))
-    #Rafraîchissement de l'image)            
-    pygame.display.flip()
-    #Limitation de vitesse de la boucle
-    #30 frames par secondes suffisent
-    pygame.time.Clock().tick(30)
+            if event.type == KEYDOWN:
+                if event.key == K_TAB:
+                    stop = True
+                    if stop:
+                        
+                        fenetre.blit(pause,(378.5,200))
+                    
+                        #Rafraîchissement de l'image
+                        pygame.display.flip()
+                        
+                        actif[event.key] = False
+                        
+                        if event.key == K_ESCAPE:
+                                stop = False                            
+                                pygame.quit()
+                                quit()
+                    
+                        if event.key == K_RETURN:
+                                                            
+                                menu = True
+                                jeu = False
+                                stop = False
+                                x1_perso = 32
+                                y1_perso = 704
+                                x1_monstre = 1280
+                                y1_monstre = 64
+                                
+                    
+                        if event.key == K_SPACE:
+                        
+                                fenetre.blit(fond, (0,0))
+                                fenetre.blit(perso, (x1_perso, y1_perso))
+                                fenetre.blit(monstre,(x1_monstre, y1_monstre))
+                        
+                                pygame.display.flip()
+                                stop = False
+                    
+            
+            #Re-collage
+            fenetre.blit(fond,(0,0))	
+            fenetre.blit(perso, (x1_perso, y1_perso))
+            fenetre.blit(monstre, (x1_monstre, y1_monstre))
+            #Rafraîchissement de l'image)            
+            pygame.display.flip()
+            #Limitation de vitesse de la boucle
+            #30 frames par secondes suffisent
+            pygame.time.Clock().tick(30)
+    
+        while x1_perso == x1_monstre and y1_perso == y1_monstre :
+            fenetre.blit(game_over,(0,0))
+            fenetre.blit(monstreXL,(504,200))
+            fenetre.blit(tache,(612,380))
+            fenetre.blit(perso,(640.5,400))
+        
+            pygame.display.flip()
+        
+            for event in pygame.event.get() :
+                    if event.type == QUIT :
+                            pygame.quit()
+                            quit()
+       
+                    if event.type == KEYDOWN :
+					
+                            if event.key == K_ESCAPE :
+                                pygame.quit()
+                                quit()
+                                
+                            if event.key == K_RETURN :
+                                menu = True
+                                jeu = False
+                                x1_perso = 32
+                                y1_perso = 704
+                                x1_monstre = 1280
+                                y1_monstre = 64
+                                
+                            if event.key == K_SPACE :
+                                x1_perso = 32
+                                y1_perso = 704
+                                x1_monstre = 1280
+                                y1_monstre = 64
