@@ -9,7 +9,8 @@ class map :
 		self.fichier = map
 		self.structure = 0
 	def generer(self):
-		with open(self.fichier, "r") as map:  #with permet de refermer le fichier dès qu'on s'en sert plus dans la fonction
+		with open(self.fichier, "r") as map:  #with permet de refermer le fichier dès qu'on s'en sert 
+		#plus dans la fonction
 		structureNiveau = []  #liste vide au départ
 		for ligne in map :
 			ligneMap = []
@@ -43,3 +44,23 @@ def generationCaseMystere :
 	case = return choice(map)
 	if case =! 1 :
 		fenetre.blit(mystere, (case))  #Je ne suis pas sûre de cette ligne
+		
+
+class mystere :
+	def __init__(self)
+		self.mystere = case
+		
+	def generationCaseMystere :
+#je fais un tir au hasard d'un élément dans ma map/liste, si c'est un 1/mur, 
+#alors il ne se passe rien, sinon, la case mystère apparaît 
+	case = return choice(map)
+	if case =! 1 :
+		fenetre.blit(mystere, (case))  #Je ne suis pas sûre de cette ligne
+
+	def hasPower :
+#si la position du perso correspond à l'élément de la liste qui vaut 4, soit case, alors on fait appel à la fonction pouvoir, 
+#case vaut 0 et on réaffiche le sol là où était affiché la case mystère
+		if positionPerso == 4 :
+			powers()
+			case = 0
+			fenetre.blit(sol, (case))
