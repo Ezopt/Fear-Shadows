@@ -11,6 +11,7 @@ import time
 from pygame.locals import *
 #from classes import *
 from cst import *
+from classes import *
 
 
 #Initialisation
