@@ -28,6 +28,7 @@ image_pause = dossier + "pause" + extension1
 
 image_tache = dossier + "tache" + extension1
 
+image_credit = dossier + "credit" + extension1
 
 #Paramètres de la fenêtre
 
