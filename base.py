@@ -11,7 +11,6 @@ import time
 from pygame.locals import *
 #from classes import *
 from cst import *
-from classes import *
 
 
 #Initialisation
@@ -27,6 +26,7 @@ persos = pygame.image.load(image_persos).convert()
 monstres = pygame.image.load(image_monstres).convert()
 game_over = pygame.image.load(image_fin).convert()
 tache = pygame.image.load(image_tache).convert()
+credit = pygame.image.load(image_credit).convert()
 
 x1_perso = 32
 y1_perso = 704
@@ -42,6 +42,7 @@ jeu = False
 reglages = False
 p = False
 m = False
+aide = False
 tstop = 0
 t0 = 0
 t = 0
@@ -75,14 +76,21 @@ while open:
                  pygame.quit()
                  quit()
           if event.type == KEYDOWN :
+                if event.key == K_TAB :
+                    reglages = True
+                    aide = True
+                    m = False
+                    p = False
                 if event.key == K_p :
                     reglages = True
                     p = True
                     m = False
+                    aide = False
                 if event.key == K_SEMICOLON :
                     reglages = True
                     m = True
                     p = False
+                    aide = False
                 if event.key == K_ESCAPE :
                     pygame.quit()
                     quit()
@@ -150,6 +158,18 @@ while open:
                             if event.key == K_l :
                                 choix_monstre = 6
                                 reglages = False
+                            if event.key == K_ESCAPE :
+                                reglages = False
+                                
+          elif aide == True :
+                fenetre.blit(credit,(0,0))
+                pygame.display.flip()
+                for event in pygame.event.get() :
+                    if event.type == QUIT :
+                            pygame.quit()
+                            quit()
+       
+                    if event.type == KEYDOWN :
                             if event.key == K_ESCAPE :
                                 reglages = False
                            
