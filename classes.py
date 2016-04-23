@@ -20,7 +20,7 @@ class map :
 
  
 
-def GénérationCaseMystère :
+def generationCaseMystere :
 #je fais un tir au hasard d'un élément dans ma map/liste, si c'est un 1/mur, 
 #alors il ne se passe rien, sinon, la case mystère apparaît 
 	case = return choice(map)
